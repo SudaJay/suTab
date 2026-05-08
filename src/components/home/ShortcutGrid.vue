@@ -39,7 +39,7 @@ const modalOpen = ref(false)
         @remove="removeShortcut"
       />
 
-      <button
+      <!-- <button
         type="button"
         class="flex min-h-[118px] flex-col items-center justify-center gap-3 rounded-[22px] border border-dashed border-[var(--border)] bg-white/20 text-muted transition duration-300 ease-apple hover:-translate-y-1 hover:bg-white/40 hover:text-ink hover:shadow-lift dark:bg-white/5 dark:hover:bg-white/10"
         @click="modalOpen = true"
@@ -50,7 +50,7 @@ const modalOpen = ref(false)
           </svg>
         </span>
         <span class="text-sm font-semibold">Add</span>
-      </button>
+      </button> -->
     </VueDraggable>
 
     <AddShortcutModal :open="modalOpen" @close="modalOpen = false" @add="addShortcut" />

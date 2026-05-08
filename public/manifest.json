@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Arc Home",
+  "version": "1.0.0",
+  "description": "A soft, modern browser home page with real bookmarks and history.",
+  "permissions": ["bookmarks", "history"],
+  "host_permissions": [
+    "https://suggestqueries.google.com/*",
+    "https://www.baidu.com/*",
+    "https://api.bing.com/*",
+    "https://duckduckgo.com/*",
+    "https://geocoding-api.open-meteo.com/*",
+    "https://api.open-meteo.com/*"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}

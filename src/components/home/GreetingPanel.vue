@@ -4,6 +4,10 @@ defineProps<{
   date: string
   greeting: string
 }>()
+
+const emit = defineEmits<{
+  toggleWorkspace: []
+}>()
 </script>
 
 <template>
@@ -15,12 +19,15 @@ defineProps<{
       <span>{{ date }}</span>
     </div>
 
-    <h1
-      class="time-display mx-auto select-none overflow-visible whitespace-nowrap bg-[linear-gradient(135deg,#19191d_0%,#565969_52%,#7c83fd_100%)] bg-clip-text font-semibold text-transparent drop-shadow-[0_22px_40px_rgba(60,63,90,0.14)] dark:bg-[linear-gradient(135deg,#ffffff_0%,#cfd3ff_48%,#88d7ff_100%)]"
-      aria-label="Current time"
+    <button
+      type="button"
+      class="time-display mx-auto select-none overflow-visible whitespace-nowrap bg-[linear-gradient(135deg,#19191d_0%,#565969_52%,#7c83fd_100%)] bg-clip-text font-semibold text-transparent drop-shadow-[0_22px_40px_rgba(60,63,90,0.14)] focus:outline-none focus-visible:soft-focus dark:bg-[linear-gradient(135deg,#ffffff_0%,#cfd3ff_48%,#88d7ff_100%)]"
+      aria-label="Toggle workspace and continue cards"
+      title="Toggle Workspace and Continue"
+      @click="emit('toggleWorkspace')"
     >
       {{ time }}
-    </h1>
+    </button>
 
     <p class="mx-auto mt-5 max-w-xl text-balance text-lg leading-8 text-muted sm:text-xl">{{ greeting }}</p>
   </div>
@@ -31,10 +38,13 @@ defineProps<{
   display: block;
   width: min(100%, 48rem);
   padding: 0 0.08em 0.12em;
+  border: 0;
   font-size: clamp(4.25rem, 13.5vw, 8rem);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.035em;
   line-height: 1.08;
   text-align: center;
+  background-color: transparent;
+  cursor: pointer;
 }
 </style>

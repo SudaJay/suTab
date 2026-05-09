@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useDarkMode } from './composables/useDarkMode'
 import { useTime } from './composables/useTime'
 import BookmarkPanel from './components/home/BookmarkPanel.vue'
@@ -11,6 +12,7 @@ import IconButton from './components/ui/IconButton.vue'
 
 const { time, date, greeting } = useTime()
 const { isDark, toggleDark } = useDarkMode()
+const showFlowCards = ref(true)
 </script>
 
 <template>
@@ -19,7 +21,12 @@ const { isDark, toggleDark } = useDarkMode()
   <main class="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-24 pt-12 sm:px-6 sm:pt-16 lg:px-8">
     <section class="relative">
       <!-- 先隐藏天气 -->
-      <GreetingPanel :time="time" :date="date" :greeting="greeting" />
+      <GreetingPanel
+        :time="time"
+        :date="date"
+        :greeting="greeting"
+        @toggle-workspace="showFlowCards = !showFlowCards"
+      />
 
       <!-- <div class="pointer-events-auto mx-auto mt-6 max-w-[17rem] xl:absolute xl:right-0 xl:top-1/2 xl:mt-0 xl:-translate-y-1/2">
         <WeatherCard />
@@ -33,10 +40,12 @@ const { isDark, toggleDark } = useDarkMode()
       </section>
     </div>
 
-    <section class="mt-8 grid gap-5 lg:grid-cols-2">
-      <BookmarkPanel />
-      <RecentList />
-    </section>
+    <Transition name="fade-up">
+      <section v-if="showFlowCards" class="mt-12 grid gap-6 lg:grid-cols-2">
+        <BookmarkPanel />
+        <RecentList />
+      </section>
+    </Transition>
   </main>
 
   <div class="fixed bottom-5 right-5 z-40">
